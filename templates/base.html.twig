@@ -1,19 +1,68 @@
-<!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}Welcome!
+			{% endblock %}
+		</title>
+		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+		{% block stylesheets %}
+			<link href="https://cdn.jsdelivr.net/npm/tailwindcss@latest/dist/tailwind.min.css" rel="stylesheet">
+            <link href="{{asset('styles/app.css')}}" rel="stylesheet">
+		{% endblock %}
+	</head>
+	<body>
+
+		{% block body %}
+			<div class="">
+
+				{% block header %}
+					<header>
+
+						<nav class="bg-gray-100">
+							<div class="container mx-auto flex justify-between items-center py-4">
+								<a class="text-xl font-semibold" href="#">Navbar</a>
+								<button class="block lg:hidden p-2 border border-gray-300" type="button" aria-label="Toggle navigation">
+									<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+									  <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 5.25h16.5m-16.5 6.75h16.5m-16.5 6.75h16.5" />
+									</svg>
+								</button>
+								<div class="hidden lg:flex space-x-4">
+									<ul class="flex space-x-4">
+										<li><a class="text-gray-700 hover:text-gray-900" href="{{path('clients.index')}}">Clients</a></li>
+                                        <li><a class="text-gray-700 hover:text-gray-900" href="{{path('articles.index')}}">Articles</a></li>
+										<li><a class="text-gray-700 hover:text-gray-900" href="#">Link</a></li>
+										<li class="relative">
+											<a class="text-gray-700 hover:text-gray-900" href="#">Dropdown</a>
+											<ul class="absolute bg-white shadow-lg hidden group-hover:block mt-1">
+												<li><a class="block px-4 py-2 hover:bg-gray-100" href="#">Action 1</a></li>
+												<li><a class="block px-4 py-2 hover:bg-gray-100" href="#">Action 2</a></li>
+											</ul>
+										</li>
+									</ul>
+									<form class="flex items-center space-x-2">
+										<input class="border border-gray-300 rounded py-2 px-4" type="text" placeholder="Search" />
+										<button class="bg-green-500 text-white px-4 py-2 rounded" type="submit">Search</button>
+									</form>
+								</div>
+							</div>
+						</nav>
+
+					</header>
+				{% endblock %}
+				<main>
+					{% block main %}{% endblock %}
+				</main>
+				{% block footer %}
+					<footer></footer>
+				{% endblock %}
+
+			</div>
+		{% endblock %}
+
+		{% block javascripts %}
+			<script src="https://cdn.jsdelivr.net/npm/tailwindcss@latest/dist/tailwind.min.js"></script>
+		{% endblock %}
+	</body>
 </html>
