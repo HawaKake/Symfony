@@ -40,4 +40,18 @@ class DettesRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+
+
+    public function findByStatut(array $statuts)
+    {
+        $qb = $this->createQueryBuilder('d');
+
+        if (!empty($statuts)) {
+            $qb->andWhere('d.statut IN (:statuts)')
+               ->setParameter('statuts', $statuts);
+        }
+
+        return $qb->getQuery()->getResult();
+    }
+
 }

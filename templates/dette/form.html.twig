@@ -1,0 +1,28 @@
+{# templates/dette/create.html.twig #}
+<h1>Créer une dette</h1>
+
+{{ form_start(form) }}
+    {{ form_row(form.montant) }}
+    {{ form_row(form.description) }}
+    {{ form_row(form.statut) }}
+    <button type="submit">Créer</button>
+{{ form_end(form) }}
+
+
+
+
+{% extends 'base.html.twig' %}
+
+{% block main %}
+	.<div class="container">
+		<div class="card">
+
+			<div class="card-header">Enregistrement d'un client</div>
+			<div class="card-body">
+				{{ form(ClientType) }}
+			</div>
+		</div>
+	</div>
+
+
+{% endblock %}
