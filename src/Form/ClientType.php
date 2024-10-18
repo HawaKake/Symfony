@@ -1,5 +1,3 @@
-<?php
-
 namespace App\Form;
 
 use App\Entity\Client;
@@ -8,6 +6,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use App\Form\Subscriber\ClientFormSubscriber;
 
 class ClientType extends AbstractType
 {
@@ -28,6 +27,9 @@ class ClientType extends AbstractType
                 'choice_label' => 'id',
             ])
         ;
+
+        // Ajout du subscriber
+        $builder->addEventSubscriber(new ClientFormSubscriber());
     }
 
     public function configureOptions(OptionsResolver $resolver): void
